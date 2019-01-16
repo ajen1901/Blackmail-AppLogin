@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BlackmailApp-Login.iml" filepath="$PROJECT_DIR$/BlackmailApp-Login.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Blackmail-AppLogin.iml" filepath="$PROJECT_DIR$/Blackmail-AppLogin.iml" />
     </modules>
   </component>
 </project>
