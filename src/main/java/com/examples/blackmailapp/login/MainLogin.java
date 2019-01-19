@@ -30,6 +30,7 @@ public class MainLogin extends Activity {
 
 	private boolean isLoggedInBackendless = false;
 	private CheckBox rememberLoginBox;
+    private static final int REQUEST_CAMERA_PERMISSION = 200;
 
 	
 	// backendless
