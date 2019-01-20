@@ -18,6 +18,8 @@ public class ImagePickerActivity extends Activity {
     private static final int PICK_IMAGE = 100;
     private ImageView imageView;
     private Button pickImageButton;
+    private Button calculateButton;
+    public static Uri cabbage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +32,18 @@ public class ImagePickerActivity extends Activity {
     private void initUI(){
         imageView = (ImageView) findViewById(R.id.image_view);
         pickImageButton = (Button) findViewById(R.id.pick_image_button);
+        calculateButton = (Button) findViewById(R.id.buttonCalculator);
 
         pickImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openGallery();
+            }
+        });
+        calculateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OnCalculatorStart();
             }
         });
     }
@@ -51,7 +60,13 @@ public class ImagePickerActivity extends Activity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             Uri imageUri = data.getData();
-            imageView.setImageURI(imageUri);
+            cabbage = imageUri;
+            imageView.setImageURI(cabbage);
+
         }
     }
+    private void OnCalculatorStart(){
+        startActivity( new Intent(this, CalculateActivity.class));
+    }
+
 }
