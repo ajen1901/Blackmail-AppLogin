@@ -20,9 +20,7 @@ public class CalculateActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calculate_activity);
         calorie = (200+5*(int) Math.ceil(Math.random() * 100));
-        tv = Integer.toString(calorie) + " Calories";
-
-
+        tv = Integer.toString(calorie);
 
         initUI();
 
@@ -35,7 +33,7 @@ public class CalculateActivity extends Activity {
 
         photograph2.setImageURI(ImagePickerActivity.cabbage);
         insult.setText(CalorieCalculate());
-        caloriesText.setText(tv);
+        caloriesText.setText(tv + " Calories");
     }
     private String CalorieCalculate(){
 
