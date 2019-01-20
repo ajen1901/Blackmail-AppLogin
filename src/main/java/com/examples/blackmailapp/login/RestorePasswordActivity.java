@@ -1,16 +1,16 @@
-
 package com.examples.blackmailapp.login;
 
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.backendless.Backendless;
 
-public class RestorePasswordActivity extends Activity {
+public class RestorePasswordActivity extends Activity{
 	private Button restorePasswordButton;
 	private EditText loginField;
 
