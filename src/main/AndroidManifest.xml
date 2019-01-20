@@ -21,13 +21,17 @@
 			</intent-filter>
 		</activity>
 
+        <activity android:name=".ImagePickerActivity">
+        </activity>
+
+        <activity android:name=".CameraRun">
+        </activity>
 		
 		<activity android:name=".RestorePasswordActivity">
 		</activity>
 
 		<activity android:name=".RegisterActivity">
 		</activity>
-		
 
 		<activity android:name=".LoginResult">
 		</activity>

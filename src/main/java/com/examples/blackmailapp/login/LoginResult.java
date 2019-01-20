@@ -21,6 +21,7 @@ public class LoginResult extends Activity {
 	private EditText backendlessUserInfo;
 	private Button bkndlsLogoutButton;
 	private Button buttonCamera;
+	private Button buttonCalculate;
 
 	private String userInfo;
 
@@ -52,6 +53,7 @@ public class LoginResult extends Activity {
 		backendlessUserInfo = (EditText) findViewById(R.id.editText_bkndlsBackendlessUserInfo);
 		bkndlsLogoutButton = (Button) findViewById(R.id.button_bkndlsBackendlessLogout);
 		buttonCamera = (Button) findViewById(R.id.buttonCamera);
+		buttonCalculate = (Button) findViewById(R.id.buttonCalculate);
 	}
 
 	private void initUIBehaviour() {
@@ -67,10 +69,20 @@ public class LoginResult extends Activity {
                 startCameraRun();
             }
         });
+		buttonCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onImagePickerClicked();
+            }
+        });
 	}
     private void startCameraRun()
     {
         startActivity(new Intent(this, CameraRun.class));
+    }
+    private void onImagePickerClicked()
+    {
+	    startActivity(new Intent(this, ImagePickerActivity.class));
     }
 	private void logoutFromBackendless(){
 		Backendless.UserService.logout(new AsyncCallback<Void>() {

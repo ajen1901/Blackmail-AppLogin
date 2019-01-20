@@ -21,7 +21,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Size;
 import android.util.SparseIntArray;
@@ -30,7 +29,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
+import android.app.Activity;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -42,7 +41,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-public class CameraRun extends AppCompatActivity {
+public class CameraRun extends Activity {
 
     private Button btnCapture;
     private TextureView textureView;
