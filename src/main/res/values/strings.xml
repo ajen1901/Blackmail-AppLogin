@@ -1,13 +1,13 @@
 <resources>
 	<string name="app_name">Soviet Strudel</string>
 	<string name="btn_LoginBackendless">Log in</string>
-	<string name="btn_LogoutBackendless">Logout from Backendless</string>
+	<string name="btn_LogoutBackendless">Logout from Soviet Strudel</string>
 	<string name="btn_LoginFacebook">Login in Facebook</string>
 	<string name="btn_LoginGooglePlus">Login in GooglePlus</string>
 	<string name="btn_LoginTwitter">Login in Twitter</string>
 
-	<string name="textView_BackendlessUserInfo">Backendless User info.</string>
-	<string name="editText_BackendlessUserInfo">You should login as Backendless user first.</string>
+	<string name="textView_BackendlessUserInfo">Soviet Strudel User info.</string>
+	<string name="editText_BackendlessUserInfo">You should login as Soviet Strudel user first.</string>
 
 	<string name="register_text">Register</string>
 	<string name="restore_link">Restore</string>
