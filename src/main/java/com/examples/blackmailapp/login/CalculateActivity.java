@@ -1,8 +1,11 @@
 package com.examples.blackmailapp.login;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +14,7 @@ public class CalculateActivity extends Activity {
     private ImageView photograph2;
     private TextView insult;
     private TextView caloriesText;
+    private Button returnMain;
     int calorie;
     String tv;
 
@@ -23,6 +27,7 @@ public class CalculateActivity extends Activity {
         tv = Integer.toString(calorie);
 
         initUI();
+        initUIBehavior();
 
     }
 
@@ -30,10 +35,20 @@ public class CalculateActivity extends Activity {
         photograph2 = (ImageView) findViewById(R.id.photographic);
         caloriesText = (TextView) findViewById(R.id.textViewCalories);
         insult = (TextView) findViewById(R.id.textViewInsult);
+        returnMain = (Button) findViewById(R.id.buttonreturn);
+
 
         photograph2.setImageURI(ImagePickerActivity.cabbage);
         insult.setText(CalorieCalculate());
         caloriesText.setText(tv + " Calories");
+    }
+    private void initUIBehavior(){
+       returnMain.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               mainReturn();
+           }
+       });
     }
     private String CalorieCalculate(){
 
@@ -48,6 +63,9 @@ public class CalculateActivity extends Activity {
             actualInsult =("Excellent choice! Make sure to microwave for the best possible experience");
         }
         return actualInsult;
+    }
+    private void mainReturn(){
+        startActivity(new Intent(this, LoginResult.class));
     }
 
 }
