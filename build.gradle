@@ -26,9 +26,8 @@ repositories {
 
 android {
   compileSdkVersion 26
-  buildToolsVersion "27.0.3"
 
-  defaultConfig {
+    defaultConfig {
     applicationId "com.examples.blackmailapp.login"
     minSdkVersion 21
     targetSdkVersion 26
