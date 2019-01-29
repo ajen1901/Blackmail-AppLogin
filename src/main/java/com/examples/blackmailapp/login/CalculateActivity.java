@@ -66,6 +66,7 @@ public class CalculateActivity extends Activity {
     }
     private void mainReturn(){
         startActivity(new Intent(this, LoginResult.class));
+        ImagePickerActivity.orange = 0;
     }
 
 }
