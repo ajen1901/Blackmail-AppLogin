@@ -11,6 +11,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.widget.EditText;
 import com.backendless.Backendless;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.widget.Toast;
 
 
 public class ImagePickerActivity extends Activity {
@@ -18,8 +24,9 @@ public class ImagePickerActivity extends Activity {
     private static final int PICK_IMAGE = 100;
     private ImageView imageView;
     private Button pickImageButton;
-    private Button calculateButton;
+    private static Button calculateButton;
     public static Uri cabbage;
+    public static int orange = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +41,22 @@ public class ImagePickerActivity extends Activity {
         pickImageButton = (Button) findViewById(R.id.pick_image_button);
         calculateButton = (Button) findViewById(R.id.buttonCalculator);
 
+
         pickImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openGallery();
+                orange = 1;
             }
         });
         calculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                OnCalculatorStart();
+                if (orange == 1){
+                    OnCalculatorStart();
+                }else{
+                    showAlertDialog();
+                }
             }
         });
     }
@@ -53,6 +66,7 @@ public class ImagePickerActivity extends Activity {
                 new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
+        orange = 1;
     }
 
     @Override
@@ -61,12 +75,30 @@ public class ImagePickerActivity extends Activity {
         if (resultCode == RESULT_OK && requestCode == PICK_IMAGE) {
             Uri imageUri = data.getData();
             cabbage = imageUri;
+
+
             imageView.setImageURI(cabbage);
 
         }
     }
     private void OnCalculatorStart(){
         startActivity( new Intent(this, CalculateActivity.class));
+    }
+
+    public void showAlertDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("No Photo Selected");
+            builder.setCancelable(false);
+            builder.setMessage("Please Select a photo to calculate calories.");
+            builder.setNeutralButton("Okay", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(ImagePickerActivity.this, "Please Select a photo to calculate calories.", Toast.LENGTH_SHORT).show();
+                    dialogInterface.cancel();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
     }
 
 }

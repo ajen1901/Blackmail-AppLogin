@@ -20,7 +20,8 @@
                     android:id="@+id/buttonCalculator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Calculate Calories" />
+                    android:text="Calculate Calories"
+                    android:onClick="showAlertDialog"/>
 
             </TableRow>
                 <ImageView
