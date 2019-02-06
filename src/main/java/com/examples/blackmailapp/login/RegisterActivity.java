@@ -28,6 +28,7 @@ public class RegisterActivity extends Activity {
 	private String name;
 	private String email;
 	private String password;
+	private String baseCalorie;
 
 	private BackendlessUser user;
 
@@ -43,6 +44,8 @@ public class RegisterActivity extends Activity {
 		emailField = (EditText) findViewById(R.id.emailField);
 		passwordField = (EditText) findViewById(R.id.passwordField);
 		registerButton = (Button) findViewById(R.id.registerButton);
+
+		baseCalorie = "0";
 
 		registerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -86,6 +89,7 @@ public class RegisterActivity extends Activity {
 
 		if (name != null) {
 			user.setProperty("name", name);
+			user.setProperty("calories", baseCalorie);
 		}
 
 

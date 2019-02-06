@@ -2,12 +2,17 @@ package com.examples.blackmailapp.login;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.backendless.Backendless;
+import com.backendless.BackendlessUser;
+import com.backendless.UserService;
+import com.backendless.async.callback.AsyncCallback;
+import com.backendless.exceptions.BackendlessException;
 
 public class CalculateActivity extends Activity {
 
@@ -16,6 +21,7 @@ public class CalculateActivity extends Activity {
     private TextView caloriesText;
     private Button returnMain;
     int calorie;
+    BackendlessUser currentUser;
     String tv;
 
 
@@ -25,6 +31,9 @@ public class CalculateActivity extends Activity {
         setContentView(R.layout.calculate_activity);
         calorie = (200+5*(int) Math.ceil(Math.random() * 100));
         tv = Integer.toString(calorie);
+        Backendless.UserService.setCurrentUser(currentUser);
+        changeCalorie(currentUser);
+
 
         initUI();
         initUIBehavior();
@@ -67,6 +76,15 @@ public class CalculateActivity extends Activity {
     private void mainReturn(){
         startActivity(new Intent(this, LoginResult.class));
         ImagePickerActivity.orange = 0;
+    }
+    private void changeCalorie(BackendlessUser user){
+        Object totalCalories = user.getProperty("calories");
+        String strudel = String.valueOf(totalCalories);
+        int strudelCalories = Integer.valueOf(strudel);
+
+        strudelCalories += calorie;
+        strudel = String.valueOf(strudelCalories);
+        user.setProperty("calories", strudel);
     }
 
 }
