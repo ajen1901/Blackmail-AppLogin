@@ -7,12 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.backendless.Backendless;
 import com.backendless.BackendlessUser;
 import com.backendless.UserService;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessException;
+import com.backendless.exceptions.BackendlessFault;
 
 public class CalculateActivity extends Activity {
 
@@ -31,8 +33,7 @@ public class CalculateActivity extends Activity {
         setContentView(R.layout.calculate_activity);
         calorie = (200+5*(int) Math.ceil(Math.random() * 100));
         tv = Integer.toString(calorie);
-        Backendless.UserService.setCurrentUser(currentUser);
-        changeCalorie(currentUser);
+        changeCalorie(currentUser); //need to find a way to get this to know who the current user is.
 
 
         initUI();
@@ -85,6 +86,18 @@ public class CalculateActivity extends Activity {
         strudelCalories += calorie;
         strudel = String.valueOf(strudelCalories);
         user.setProperty("calories", strudel);
+
+        Backendless.Persistence.save(user, new AsyncCallback<BackendlessUser>() {
+            @Override
+            public void handleResponse(BackendlessUser response) {
+                Toast.makeText(CalculateActivity.this, "Worked well?", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Toast.makeText(CalculateActivity.this, "Unsuccessful update", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }
