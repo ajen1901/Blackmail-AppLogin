@@ -26,7 +26,6 @@ public class CalculateActivity extends Activity {
     private TextView caloriesText;
     private Button returnMain;
     int calorie;
-    BackendlessUser currentUser;
     String tv;
 
 
@@ -36,7 +35,7 @@ public class CalculateActivity extends Activity {
         setContentView(R.layout.calculate_activity);
         calorie = (200+5*(int) Math.ceil(Math.random() * 100));
         tv = Integer.toString(calorie);
-        changeCalorie(currentUser); //need to find a way to get this to know who the current user is.
+        changeCalorie(); //need to find a way to get this to know who the current user is.
 
 
         initUI();
@@ -81,15 +80,25 @@ public class CalculateActivity extends Activity {
         startActivity(new Intent(this, LoginResult.class));
         ImagePickerActivity.orange = 0;
     }
-    private void changeCalorie(BackendlessUser user){
+    private void changeCalorie(){
         if (connectionAvailable()){
-            Object totalCalories = user.getProperty("calories");
-            String strudel = String.valueOf(totalCalories);
-            int strudelCalories = Integer.valueOf(strudel);
-
-            strudelCalories += calorie;
             Profile profile = new Profile();
-            profile.setCalories(strudelCalories);
+            int totalCalories = profile.getCaloric();
+            totalCalories += calorie;
+
+            profile.setCaloric(totalCalories);
+
+            Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
+                @Override
+                public void handleResponse(Profile response) {
+                    Toast.makeText(CalculateActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(CalculateActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
+                }
+            });
         } else{
             Toast.makeText(this, "No internet connection, please connect.", Toast.LENGTH_SHORT).show();
         }

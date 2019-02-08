@@ -82,7 +82,10 @@ public class LoginResult extends Activity {
     }
     private void onImagePickerClicked()
     {
-	    startActivity(new Intent(this, ImagePickerActivity.class));
+        Intent intent = new Intent(this, ImagePickerActivity.class);
+        intent.putExtra("objectId", getIntent().getStringExtra("objectId"));
+        intent.putExtra("user", getIntent().getStringExtra("user"));
+    	startActivity(intent);
     }
 	private void logoutFromBackendless(){
 		Backendless.UserService.logout(new AsyncCallback<Void>() {

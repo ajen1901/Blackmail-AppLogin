@@ -28,7 +28,6 @@ public class RegisterActivity extends Activity {
 	private String name;
 	private String email;
 	private String password;
-	private String baseCalorie;
 
 	private BackendlessUser user;
 
@@ -45,7 +44,6 @@ public class RegisterActivity extends Activity {
 		passwordField = (EditText) findViewById(R.id.passwordField);
 		registerButton = (Button) findViewById(R.id.registerButton);
 
-		baseCalorie = "0";
 
 		registerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -89,18 +87,33 @@ public class RegisterActivity extends Activity {
 
 		if (name != null) {
 			user.setProperty("name", name);
-			user.setProperty("calories", baseCalorie);
 		}
+		Profile profile = new Profile();
+		profile.setCaloric(0);
+		profile.setUserMail2(email);
+		profile.setObjectId(user.getObjectId());
+        Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
+            @Override
+            public void handleResponse(Profile response) {
+                Toast.makeText(RegisterActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Toast.makeText(RegisterActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 		Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
 			@Override
 			public void handleResponse(BackendlessUser response) {
 				Resources resources = getResources();
-				String message = String.format(resources.getString(R.string.registration_success_message), resources.getString(R.string.app_name));
+				String message = resources.getString(R.string.registration_success_message);
+				String message2 = resources.getString(R.string.app_name);
+				String message3 = message + " " + message2;
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-				builder.setMessage(message).setTitle(R.string.registration_success);
+				builder.setMessage(message3).setTitle(R.string.registration_success);
 				AlertDialog dialog = builder.create();
 				dialog.show();
 			}

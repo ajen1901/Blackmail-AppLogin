@@ -131,6 +131,8 @@ public class MainLogin extends Activity {
 		Intent intent = new Intent(this, LoginResult.class);
 		intent.putExtra(LoginResult.userInfo_key, msg);
 		intent.putExtra(LoginResult.logoutButtonState_key, true);
+		intent.putExtra("objectId", user.getObjectId());
+		intent.putExtra("user", user.getEmail());
 		startActivity(intent);
 	}
 
