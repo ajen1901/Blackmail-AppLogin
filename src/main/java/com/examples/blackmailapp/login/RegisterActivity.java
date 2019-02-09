@@ -29,6 +29,8 @@ public class RegisterActivity extends Activity {
 	private String email;
 	private String password;
 
+    Profile profile = new Profile();
+
 	private BackendlessUser user;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -75,36 +77,27 @@ public class RegisterActivity extends Activity {
 			name = nameText;
 		}
 
-		BackendlessUser user = new BackendlessUser();
-
-		if (email != null) {
-			user.setEmail(email);
-		}
-
-		if (password != null) {
-			user.setPassword(password);
-		}
-
-		if (name != null) {
-			user.setProperty("name", name);
-		}
-		Profile profile = new Profile();
-		profile.setCaloric(0);
-		profile.setUserMail3(email);
-		profile.setObjectId(user.getObjectId());
+        profile.setCaloric(0);
+        profile.setUserMail3(email);
         Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
             @Override
             public void handleResponse(Profile response) {
                 Toast.makeText(RegisterActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
-            }
+                BackendlessUser user = new BackendlessUser();
 
-            @Override
-            public void handleFault(BackendlessFault fault) {
-                Toast.makeText(RegisterActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
-            }
-        });
+                if (email != null) {
+                    user.setEmail(email);
+                }
 
-		Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
+                if (password != null) {
+                    user.setPassword(password);
+                }
+
+                if (name != null) {
+                    user.setProperty("name", name);
+                }
+                user.setProperty("ProfileId", profile.getObjectId());
+                Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
 			@Override
 			public void handleResponse(BackendlessUser response) {
 				Resources resources = getResources();
@@ -126,6 +119,13 @@ public class RegisterActivity extends Activity {
 				dialog.show();
 			}
 		});
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Toast.makeText(RegisterActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
+            }
+        });
 	}
 }
 

@@ -81,12 +81,14 @@ public class CalculateActivity extends Activity {
         return actualInsult;
     }
     private void mainReturn(){
-        startActivity(new Intent(this, LoginResult.class));
+        Intent intent = new Intent(this, LoginResult.class);
+        intent.putExtra("objectId", getIntent().getStringExtra("objectId"));
+        startActivity(intent);
         ImagePickerActivity.orange = 0;
     }
     private void changeCalorie(){
         if (connectionAvailable()){
-            /*Backendless.Persistence.of(Profile.class).findById(getIntent().getStringExtra("userMail3"), new AsyncCallback<Profile>() {
+            Backendless.Persistence.of(Profile.class).findById(getIntent().getStringExtra("objectId"), new AsyncCallback<Profile>() {
                 @Override
                 public void handleResponse(Profile response) {
                     int totalCalories = response.getCaloric();
@@ -110,8 +112,8 @@ public class CalculateActivity extends Activity {
                 public void handleFault(BackendlessFault fault) {
                     Toast.makeText(CalculateActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
                 }
-            });*/
-            Profile profile = new Profile();
+            });
+            /*Profile profile = new Profile();
             int totalCalories = profile.getCaloric();
             totalCalories += calorie;
 
@@ -127,7 +129,7 @@ public class CalculateActivity extends Activity {
                 public void handleFault(BackendlessFault fault) {
                     Toast.makeText(CalculateActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
                 }
-            });
+            }); */
         } else{
             Toast.makeText(this, "No internet connection, please connect.", Toast.LENGTH_SHORT).show();
         }
