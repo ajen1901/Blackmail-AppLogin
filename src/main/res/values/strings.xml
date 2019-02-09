@@ -1,13 +1,13 @@
 <resources>
-	<string name="app_name">Soviet Strudel</string>
+	<string name="app_name">Legal Blackmail</string>
 	<string name="btn_LoginBackendless">Log in</string>
-	<string name="btn_LogoutBackendless">Logout from Soviet Strudel</string>
+	<string name="btn_LogoutBackendless">Logout from Backendless</string>
 	<string name="btn_LoginFacebook">Login in Facebook</string>
 	<string name="btn_LoginGooglePlus">Login in GooglePlus</string>
 	<string name="btn_LoginTwitter">Login in Twitter</string>
 
-	<string name="textView_BackendlessUserInfo">Soviet Strudel User info.</string>
-	<string name="editText_BackendlessUserInfo">You should login as Soviet Strudel user first.</string>
+	<string name="textView_BackendlessUserInfo">Backendless User info.</string>
+	<string name="editText_BackendlessUserInfo">You should login as Backendless user first.</string>
 
 	<string name="register_text">Register</string>
 	<string name="restore_link">Restore</string>
@@ -30,7 +30,7 @@
 	<string name="restore_password_page_name">Password Restoration</string>
 	<string name="password_recovered_message">We sent an email to your email address with a link to a password change page. Please check your email and follow the link for further instructions.</string>
 	<string name="registration_page_name">Registration</string>
-	<string name="registration_success_message">Thank you for registering with the Big Strudel Inc.</string>
+	<string name="registration_success_message">Thank you for registering with the %1$s.</string>
 
 
 	<!-- __________ change this credentials and configure your applications __________ -->

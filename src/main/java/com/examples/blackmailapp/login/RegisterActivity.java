@@ -29,8 +29,6 @@ public class RegisterActivity extends Activity {
 	private String email;
 	private String password;
 
-    Profile profile = new Profile();
-
 	private BackendlessUser user;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,6 @@ public class RegisterActivity extends Activity {
 		emailField = (EditText) findViewById(R.id.emailField);
 		passwordField = (EditText) findViewById(R.id.passwordField);
 		registerButton = (Button) findViewById(R.id.registerButton);
-
 
 		registerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -77,35 +74,29 @@ public class RegisterActivity extends Activity {
 			name = nameText;
 		}
 
-        profile.setCaloric(0);
-        profile.setUserMail3(email);
-        Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
-            @Override
-            public void handleResponse(Profile response) {
-                BackendlessUser user = new BackendlessUser();
+		BackendlessUser user = new BackendlessUser();
 
-                if (email != null) {
-                    user.setEmail(email);
-                }
+		if (email != null) {
+			user.setEmail(email);
+		}
 
-                if (password != null) {
-                    user.setPassword(password);
-                }
+		if (password != null) {
+			user.setPassword(password);
+		}
 
-                if (name != null) {
-                    user.setProperty("name", name);
-                }
-                user.setProperty("ProfileId", profile.getObjectId());
-                Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
+		if (name != null) {
+			user.setProperty("name", name);
+		}
+
+
+		Backendless.UserService.register(user, new AsyncCallback<BackendlessUser>() {
 			@Override
 			public void handleResponse(BackendlessUser response) {
 				Resources resources = getResources();
-				String message = resources.getString(R.string.registration_success_message);
-				String message2 = resources.getString(R.string.app_name);
-				String message3 = message + " " + message2;
+				String message = String.format(resources.getString(R.string.registration_success_message), resources.getString(R.string.app_name));
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
-				builder.setMessage(message3).setTitle(R.string.registration_success);
+				builder.setMessage(message).setTitle(R.string.registration_success);
 				AlertDialog dialog = builder.create();
 				dialog.show();
 			}
@@ -118,12 +109,6 @@ public class RegisterActivity extends Activity {
 				dialog.show();
 			}
 		});
-            }
-
-            @Override
-            public void handleFault(BackendlessFault fault) {
-            }
-        });
 	}
 }
 
