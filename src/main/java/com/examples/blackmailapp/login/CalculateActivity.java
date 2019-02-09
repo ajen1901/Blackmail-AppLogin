@@ -18,6 +18,10 @@ import com.backendless.UserService;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessException;
 import com.backendless.exceptions.BackendlessFault;
+import com.backendless.persistence.BackendlessDataQuery;
+import com.backendless.persistence.DataQueryBuilder;
+
+import java.util.List;
 
 public class CalculateActivity extends Activity {
 
@@ -35,7 +39,7 @@ public class CalculateActivity extends Activity {
         setContentView(R.layout.calculate_activity);
         calorie = (200+5*(int) Math.ceil(Math.random() * 100));
         tv = Integer.toString(calorie);
-        changeCalorie(); //need to find a way to get this to know who the current user is.
+        changeCalorie();
 
 
         initUI();
@@ -82,6 +86,31 @@ public class CalculateActivity extends Activity {
     }
     private void changeCalorie(){
         if (connectionAvailable()){
+            /*Backendless.Persistence.of(Profile.class).findById(getIntent().getStringExtra("userMail3"), new AsyncCallback<Profile>() {
+                @Override
+                public void handleResponse(Profile response) {
+                    int totalCalories = response.getCaloric();
+                    totalCalories += calorie;
+
+                    response.setCaloric(totalCalories);
+                    Backendless.Persistence.save(response, new AsyncCallback<Profile>() {
+                        @Override
+                        public void handleResponse(Profile response) {
+                            Toast.makeText(CalculateActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void handleFault(BackendlessFault fault) {
+                            Toast.makeText(CalculateActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+                @Override
+                public void handleFault(BackendlessFault fault) {
+                    Toast.makeText(CalculateActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                }
+            });*/
             Profile profile = new Profile();
             int totalCalories = profile.getCaloric();
             totalCalories += calorie;

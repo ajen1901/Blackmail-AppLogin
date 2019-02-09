@@ -90,7 +90,7 @@ public class RegisterActivity extends Activity {
 		}
 		Profile profile = new Profile();
 		profile.setCaloric(0);
-		profile.setUserMail2(email);
+		profile.setUserMail3(email);
 		profile.setObjectId(user.getObjectId());
         Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
             @Override

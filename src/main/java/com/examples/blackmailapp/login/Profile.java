@@ -2,13 +2,13 @@ package com.examples.blackmailapp.login;
 
 public class Profile {
     private int caloric;
-    private String userMail2;
+    private String userMail3;
 
     private String objectId;
 
     public Profile(){
         this.caloric = 0;
-        this.userMail2 = null;
+        this.userMail3 = null;
     }
 
     public void setCaloric(int calories){
@@ -17,11 +17,11 @@ public class Profile {
     public int getCaloric(){
         return caloric;
     }
-    public void setUserMail2(String userMail2){
-        this.userMail2 = userMail2;
+    public void setUserMail3(String userMail3){
+        this.userMail3 = userMail3;
     }
-    public String getUserMail2(){
-        return userMail2;
+    public String getUserMail3(){
+        return userMail3;
     }
     public void setObjectId(String objectId){
         this.objectId = objectId;

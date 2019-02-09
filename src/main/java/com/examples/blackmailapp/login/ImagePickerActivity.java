@@ -84,7 +84,7 @@ public class ImagePickerActivity extends Activity {
     private void OnCalculatorStart(){
         Intent intent = new Intent(this, CalculateActivity.class);
         intent.putExtra("objectId", getIntent().getStringExtra("objectId"));
-        intent.putExtra("user", getIntent().getStringExtra("user"));
+        intent.putExtra("userMail3", getIntent().getStringExtra("user"));
         startActivity(intent);
     }
 
