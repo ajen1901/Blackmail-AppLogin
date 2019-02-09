@@ -10,6 +10,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.backendless.Backendless;
@@ -21,6 +22,7 @@ public class LoginResult extends Activity {
 	static final String logoutButtonState_key = "LogoutButtonState";
 
 	private EditText backendlessUserInfo;
+	private TextView calorieSum;
 	private Button bkndlsLogoutButton;
 	private Button buttonCamera;
 	private Button buttonCalculate;
@@ -53,6 +55,7 @@ public class LoginResult extends Activity {
 
 	private void initUI() {
 		backendlessUserInfo = (EditText) findViewById(R.id.editText_bkndlsBackendlessUserInfo);
+		calorieSum = (TextView) findViewById(R.id.totalCaloriesAllTime);
 		bkndlsLogoutButton = (Button) findViewById(R.id.button_bkndlsBackendlessLogout);
 		buttonCamera = (Button) findViewById(R.id.buttonCamera);
 		buttonCalculate = (Button) findViewById(R.id.buttonCalculate);
@@ -77,6 +80,18 @@ public class LoginResult extends Activity {
                 onImagePickerClicked();
             }
         });
+        Backendless.Persistence.of(Profile.class).findById(getIntent().getStringExtra("objectId"), new AsyncCallback<Profile>() {
+            @Override
+            public void handleResponse(Profile response) {
+                int totalCalories = response.getCaloric();
+                calorieSum.setText(totalCalories + " All-time Calories");
+            }
+
+            @Override
+            public void handleFault(BackendlessFault fault) {
+                Toast.makeText(LoginResult.this, "Update Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
 	}
     private void startCameraRun()
     {
@@ -86,7 +101,6 @@ public class LoginResult extends Activity {
     {
         Intent intent = new Intent(this, ImagePickerActivity.class);
         intent.putExtra("objectId", getIntent().getStringExtra("objectId"));
-        intent.putExtra("user", getIntent().getStringExtra("user"));
     	startActivity(intent);
     }
 	private void logoutFromBackendless(){

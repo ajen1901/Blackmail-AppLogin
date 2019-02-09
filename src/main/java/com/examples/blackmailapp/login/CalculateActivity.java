@@ -98,12 +98,10 @@ public class CalculateActivity extends Activity {
                     Backendless.Persistence.save(response, new AsyncCallback<Profile>() {
                         @Override
                         public void handleResponse(Profile response) {
-                            Toast.makeText(CalculateActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
                         public void handleFault(BackendlessFault fault) {
-                            Toast.makeText(CalculateActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -113,23 +111,6 @@ public class CalculateActivity extends Activity {
                     Toast.makeText(CalculateActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
                 }
             });
-            /*Profile profile = new Profile();
-            int totalCalories = profile.getCaloric();
-            totalCalories += calorie;
-
-            profile.setCaloric(totalCalories);
-
-            Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
-                @Override
-                public void handleResponse(Profile response) {
-                    Toast.makeText(CalculateActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void handleFault(BackendlessFault fault) {
-                    Toast.makeText(CalculateActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
-                }
-            }); */
         } else{
             Toast.makeText(this, "No internet connection, please connect.", Toast.LENGTH_SHORT).show();
         }

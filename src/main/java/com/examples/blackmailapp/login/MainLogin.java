@@ -128,13 +128,11 @@ public class MainLogin extends Activity {
 			msg += entry.getKey() + " : " + entry.getValue() + "\n";
 
         String profileId = String.valueOf(user.getProperty("ProfileId"));
-        String userMail = user.getEmail();
 
 		Intent intent = new Intent(this, LoginResult.class);
 		intent.putExtra(LoginResult.userInfo_key, msg);
 		intent.putExtra(LoginResult.logoutButtonState_key, true);
 		intent.putExtra("objectId", profileId);
-		intent.putExtra("user", userMail);
 
 		startActivity(intent);
 	}

@@ -82,7 +82,6 @@ public class RegisterActivity extends Activity {
         Backendless.Persistence.save(profile, new AsyncCallback<Profile>() {
             @Override
             public void handleResponse(Profile response) {
-                Toast.makeText(RegisterActivity.this, "Added Successfully", Toast.LENGTH_SHORT).show();
                 BackendlessUser user = new BackendlessUser();
 
                 if (email != null) {
@@ -123,7 +122,6 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void handleFault(BackendlessFault fault) {
-                Toast.makeText(RegisterActivity.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
             }
         });
 	}
