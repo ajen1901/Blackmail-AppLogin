@@ -30,7 +30,6 @@ public class MainLogin extends Activity {
 
 	private boolean isLoggedInBackendless = false;
 	private CheckBox rememberLoginBox;
-    private static final int REQUEST_CAMERA_PERMISSION = 200;
 
 	
 	// backendless
@@ -127,15 +126,10 @@ public class MainLogin extends Activity {
 		for (Map.Entry<String, Object> entry : user.getProperties().entrySet())
 			msg += entry.getKey() + " : " + entry.getValue() + "\n";
 
-        String profileId = String.valueOf(user.getProperty("ProfileId"));
-        String userMail = user.getEmail();
 
 		Intent intent = new Intent(this, LoginResult.class);
 		intent.putExtra(LoginResult.userInfo_key, msg);
 		intent.putExtra(LoginResult.logoutButtonState_key, true);
-		intent.putExtra("objectId", profileId);
-		intent.putExtra("user", userMail);
-
 		startActivity(intent);
 	}
 

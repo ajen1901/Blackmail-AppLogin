@@ -10,8 +10,6 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
@@ -22,8 +20,6 @@ public class LoginResult extends Activity {
 
 	private EditText backendlessUserInfo;
 	private Button bkndlsLogoutButton;
-	private Button buttonCamera;
-	private Button buttonCalculate;
 
 	private String userInfo;
 
@@ -54,8 +50,6 @@ public class LoginResult extends Activity {
 	private void initUI() {
 		backendlessUserInfo = (EditText) findViewById(R.id.editText_bkndlsBackendlessUserInfo);
 		bkndlsLogoutButton = (Button) findViewById(R.id.button_bkndlsBackendlessLogout);
-		buttonCamera = (Button) findViewById(R.id.buttonCamera);
-		buttonCalculate = (Button) findViewById(R.id.buttonCalculate);
 	}
 
 	private void initUIBehaviour() {
@@ -65,30 +59,8 @@ public class LoginResult extends Activity {
 					logoutFromBackendless();
 			}
 		});
-		buttonCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startCameraRun();
-            }
-        });
-		buttonCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onImagePickerClicked();
-            }
-        });
 	}
-    private void startCameraRun()
-    {
-        startActivity(new Intent(this, CameraRun.class));
-    }
-    private void onImagePickerClicked()
-    {
-        Intent intent = new Intent(this, ImagePickerActivity.class);
-        intent.putExtra("objectId", getIntent().getStringExtra("objectId"));
-        intent.putExtra("user", getIntent().getStringExtra("user"));
-    	startActivity(intent);
-    }
+
 	private void logoutFromBackendless(){
 		Backendless.UserService.logout(new AsyncCallback<Void>() {
 			@Override

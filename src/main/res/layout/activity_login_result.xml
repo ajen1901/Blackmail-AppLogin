@@ -37,25 +37,12 @@
 				android:inputType="none"/>
 
 		<Button
-			android:id="@+id/buttonCamera"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Take A Photo" />
-
-        <Button
-            android:id="@+id/buttonCalculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose a photo To Calculate the Calories" />
-
-        <Button
 				android:id="@+id/button_bkndlsBackendlessLogout"
 				android:text="@string/btn_LogoutBackendless"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:enabled="true"
 				android:visibility="invisible"/>
-
 	</LinearLayout>
 
 </RelativeLayout>
